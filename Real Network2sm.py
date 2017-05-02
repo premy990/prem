@@ -1,25 +1,20 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Mar 05 14:23:05 2017
 
-@author: prem
-"""
 import pickle
 import numpy as np
 import operator
 import matplotlib.pyplot as plt
 
-with open("/home/pk/Desktop/CN project/split_merge_real1.txt",'rb') as f:
+with open("/home/pk/Desktop/CN project/split_merge_real2.txt",'rb') as f:
 #with open("/home/pk/Python Wd/Python wd_old/cn project/split_merge_rework.txt",'rb') as f:
     splinput=pickle.load(f)
 
 ##################Running Split-Merge########################
-
+Nplot=[]
 CF=[]
 CI=splinput
 out = np.empty(4, dtype=object)
 #ci of paper =set(cnode)
-Nplot=[]
+
 for ci in CI:
    # AllCnode=[]#All the nodes with repetitions in all communities
     #for commi in range(len(CI)):
@@ -156,7 +151,7 @@ while DELTA=='FALSE':
                 po=min(poij,poji)
                # print po
             if i<j:
-                if po > .0012:
+                if po > .0001:
                     S.append(CF[i])
                     S.append(CF[j])
                 S_new=[]
@@ -224,7 +219,9 @@ while DELTA=='FALSE':
     print DELTA
     
 plt.plot(Nplot,lw=2)
-plt.title("NA improvement for theta=0.001")
+
+plt.title("NA improvement for theta=0.0001")
 plt.ylabel("Average NA")
 plt.xlabel("Improvement steps")
+
 Nplot=[]

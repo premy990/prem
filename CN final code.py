@@ -155,7 +155,7 @@ while DELTA=='FALSE':
                 po=min(poij,poji)
                # print po
             if i<j:
-                if po > .005:
+                if po > .004:
                     S.append(CF[i])
                     S.append(CF[j])
                 S_new=[]
@@ -207,6 +207,20 @@ while DELTA=='FALSE':
                                 CM=Cdash
                                 #print NAM,'in'
     CF=CM
+    Na=[]
+    for i in range(len(CF)):
+        cnodena=[]
+        for key in range(len(CF[i])):
+            s= CF[i][key].values()
+            flattened = [val for sublist in s for val in sublist]
+            #print i,key,flattened
+            cnodena.extend(flattened)
+            scnodena=set(cnodena)
+            #print len(scnodena)
+            NAC=1-len(scnodena)/(len(cnodena)*1.0)
+            Na.extend([NAC])
+    Nplot.append(np.mean(Na))
     print DELTA
     
-    
+plt.plot(Nplot,lw=2)  
+Nplot=[]

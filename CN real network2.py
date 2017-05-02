@@ -2,22 +2,19 @@ import pandas as pd
 import numpy as np
 import numpy
 
-df = pd.read_csv('/home/pk/Downloads/tij_InVS.dat', sep='\s+', header=None)
-
+df = pd.read_csv('/home/pk/Downloads/primaryschool.csv', sep=',', header=None)
 
 df.describe()
 
-q=df.quantile([.2,.4,.6,.8])
+df.quantile([.2,.4,.6,.8])
 
-print q[0]
 
-bins = [28819,145064,322568,728100,897336,1016441]
+bins = [31220,43380,56600,124320,134400,148120]
 
 group_names = [0,1,2,3,4]
 
 categories = pd.cut(df[0], bins, labels=group_names)
 df['categories'] = pd.cut(df[0], bins, labels=group_names)
-categories
 
 df1 = df[df['categories'] ==0]
 df1=df1[[1,2]]
@@ -56,7 +53,13 @@ for i in range(0,len(df5.axes[0])):
     line=str(df5.iloc[i,0])+"\t"+str(df5.iloc[i,1])+"\n"
     fileopen.write(line)
 
-
+'''
+np.savetxtl(r'/home/pk/Python Wd/np1.txt', df1.values, fmt='%d', delimiter='\t')
+np.savetxt(r'/home/pk/Python Wd/np2.txt', df2.values, fmt='%d', delimiter='\t')
+np.savetxt(r'/home/pk/Python Wd/np3.txt', df3.values, fmt='%d', delimiter='\t')
+np.savetxt(r'/home/pk/Python Wd/np4.txt', df4.values, fmt='%d', delimiter='\t')
+np.savetxt(r'/home/pk/Python Wd/np5.txt', df5.values, fmt='%d', delimiter='\t')
+'''
 
 import math
 import unittest
@@ -195,7 +198,7 @@ list3.append(max4);
 list3a=numpy.asarray(list3);
                     
 #Thresholdiing and Union
-thres=0.2;
+thres=0.26;
 
 t1list2=list2[:];
 for i in range(len(list2a)):
@@ -257,5 +260,5 @@ for i in range(len(TCOMM)):
 
 import pickle
 
-with open("/home/pk/Desktop/CN project/split_merge_real1.txt",'wb') as f:
+with open("/home/pk/Desktop/CN project/split_merge_real2.txt",'wb') as f:
    pickle.dump(TCOMM,f)
